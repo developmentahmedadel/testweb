@@ -44,14 +44,32 @@
     //   event.preventDefault();
     // });
 
-
     $(document).on('click','#ToggleThem',function(){
       $('body').toggleClass("bg-dark")    
       $('body').toggleClass("bg-light")
+      //
+      if($('body').hasClass("bg-dark")){
+        localStorage.setItem("UserThem",'dark')
+      }
+      if($('body').hasClass("bg-light")){
+        localStorage.setItem("UserThem",'light')
+      }
     })
 
     $(document).on('click','#HomePopUP',function(){
       $('#HomePopUPContent').toggle()
     })
+
+    let UserThem = localStorage.getItem("UserThem")
+    if(UserThem != undefined && UserThem != ""){
+      if(UserThem == "light"){
+        $('body').removeClass("bg-dark")    
+        $('body').addClass("bg-light")
+      }
+      if(UserThem == "dark"){
+        $('body').removeClass("bg-light")    
+        $('body').addClass("bg-dark")
+      }
+    }
 
   })(jQuery); // End of use strict
